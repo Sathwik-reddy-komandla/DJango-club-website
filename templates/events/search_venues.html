@@ -1,0 +1,55 @@
+{% extends 'events/base.html' %}
+
+{% block content %}
+<br>
+
+<div class="card">
+    <div class="card-header">
+        {% if searched %}
+            You Searched for  {{searched}}
+        {% else %}
+        Search Venues...
+        {% endif %}
+    </div>
+<div class="card-body">
+<form  role="search" method="post" action="{% url 'search_venues' %}">
+    {% csrf_token %} 
+    <input class="form-control me-2" type="search" name='searched' placeholder="Search" aria-label="Search">
+    <br>
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+
+</div>
+</div>
+<br><br>
+
+{% for venue in venues %}
+
+<div class="card">
+    <div class="card-header">
+        Venue
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{venue.name}}</h5>
+      <p class="card-text">
+        <ul>
+            <li>{{venue.address}}</li>
+            <li>{{venue.zip_code}}</li>
+            <li>{{venue.phone}}</li>
+            <li>{{venue.email_address}}</li>
+            <li><a href="{{venue.web}}">
+                {{venue.web}}
+            </a></li>
+<li>Owner Id :{{venue.owner}}</li>
+        </ul>
+        
+    </p>
+    </div>
+    </div>
+<br><br>
+{% endfor %}
+   
+
+
+
+{% endblock %}

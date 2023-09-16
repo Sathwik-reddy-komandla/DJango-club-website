@@ -1,0 +1,28 @@
+
+{% extends 'events/base.html' %}
+
+{% block content %}
+    <center>
+
+    <h1>Hello Sathwik Events for {{month}} {{year}}</h1>
+    <p>As of {{ time }}</p>
+    <br><br>
+
+    <p>{{cal|safe}}</p>
+    <br><br>
+<h3>Copyright &copy; {{current_year}} </h3>
+
+{% if event_list %}
+
+{% for event in event_list %}
+        {{event}}-{{event.event_date}}
+        <br>
+{% endfor %}
+{% else %}
+Sorry... There are no events this month...
+{% endif %}
+
+</center>
+
+
+{% endblock %}
